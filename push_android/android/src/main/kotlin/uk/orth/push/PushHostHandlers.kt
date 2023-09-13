@@ -149,7 +149,12 @@ class PushHostHandlers(
             context: Context, intent: Intent
         ) {
             val onMessageReceivedIntent = Intent(ON_MESSAGE_RECEIVED)
-            onMessageReceivedIntent.putExtras(intent.extras!!)
+
+            val extras = intent.extras
+            Log.i(TAG, "Extras " + extras)
+            if (extras != null){
+                onMessageReceivedIntent.putExtras(extras)
+            }
             LocalBroadcastManager.getInstance(context).sendBroadcast(onMessageReceivedIntent)
         }
 
